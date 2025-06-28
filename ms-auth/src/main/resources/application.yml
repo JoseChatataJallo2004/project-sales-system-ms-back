@@ -1,0 +1,19 @@
+server:
+  port: 8083
+
+spring:
+  application.name: ms-auth
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/ms_santiago?serverTimezone=UTC
+    username: root
+    password: mysql
+
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+jwt:
+  secret: MiClaveSuperSecretaDe256Bits1234567890
+  expiration: 1800       # segundos (30 min)

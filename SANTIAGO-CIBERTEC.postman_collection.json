@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "9462c892-a85d-4a74-969d-bf0c74dc15cf",
+		"name": "SANTIAGO-CIBERTEC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32870035",
+		"_collection_link": "https://dev999-0061.postman.co/workspace/DEV-Workspace~4e923263-496b-4737-8447-7dadbf093081/collection/32870035-9462c892-a85d-4a74-969d-bf0c74dc15cf?action=share&source=collection_link&creator=32870035"
+	},
+	"item": [
+		{
+			"name": "MS-CLIENT",
+			"item": [
+				{
+					"name": "PRODUCTO",
+					"item": [
+						{
+							"name": "CREAR",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Laptop Lenovo\",\r\n  \"precio\": 2500.50,\r\n  \"stock\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL-LOCAL}}/productos"
+							},
+							"response": []
+						},
+						{
+							"name": "LISTAR",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/clients/productos"
+							},
+							"response": []
+						},
+						{
+							"name": "EDITAR",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Laptop HP\",\r\n  \"precio\": 2700.00,\r\n  \"stock\": 8\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL-LOCAL}}/productos/1"
+							},
+							"response": []
+						},
+						{
+							"name": "ELIMINAR",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Laptop HP\",\r\n  \"precio\": 2700.00,\r\n  \"stock\": 8\r\n}"
+								},
+								"url": "{{URL-LOCAL}}/productos/1"
+							},
+							"response": []
+						},
+						{
+							"name": "buscar-por-nombre",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL-LOCAL}}/productos/buscar-por-nombre/Laptop Lenovo"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CLIENTE",
+					"item": [
+						{
+							"name": "CREAR",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Juan\",\r\n  \"apellido\": \"Perez\",\r\n  \"correo\": \"juan@mail.com\",\r\n  \"telefono\": \"999888777\",\r\n  \"dni\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL-LOCAL}}/clientes"
+							},
+							"response": []
+						},
+						{
+							"name": "LISTAR",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/clients/clientes"
+							},
+							"response": []
+						},
+						{
+							"name": "EDITAR",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Juan Carlos\",\r\n  \"apellido\": \"Pérez\",\r\n  \"correo\": \"juancarlos@gmail.com\",\r\n  \"telefono\": \"900000000\",\r\n  \"dni\": \"12345678\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL-LOCAL}}/clientes/1"
+							},
+							"response": []
+						},
+						{
+							"name": "ELIMINAR",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{URL-LOCAL}}/clientes/1"
+							},
+							"response": []
+						},
+						{
+							"name": "buscar-por-dni",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL-LOCAL}}/clientes/buscar-por-dni/12345678"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "MENU",
+					"item": [
+						{
+							"name": "MENU-ROL",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIkFETUlOIl0sImlhdCI6MTc1MTEwMzI1NiwiZXhwIjoxNzUxMTA1MDU2fQ.ImzL3nSko8yotuuSZGL0i0Bt4slniPd6BVYQF8ahJq8"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIkFETUlOIl0sImlhdCI6MTc1MTEwMzA5MiwiZXhwIjoxNzUxMTA0ODkyfQ.aQR7IQmju7f8H-lt9W9DKqDBuUabIqP-fRHjVtxr2A4",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": "http://localhost:8081/clients/menu/por-rol"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "MS-AUTH",
+			"item": [
+				{
+					"name": "LOGIN",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "es-AR,es-419;q=0.9,es;q=0.8,en;q=0.7"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:4200"
+							},
+							{
+								"key": "Referer",
+								"value": "http://localhost:4200/"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-site"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"137\", \"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"admin\",\"password\":\"admin123\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8083/auth/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MS-SALES",
+			"item": [
+				{
+					"name": "REGISTRAR",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"detalles\": [\r\n    {\r\n      \"productoId\": 101,\r\n      \"cantidad\": 2,\r\n      \"precioUnitario\": 45.50\r\n    },\r\n    {\r\n      \"productoId\": 202,\r\n      \"cantidad\": 1,\r\n      \"precioUnitario\": 110.00\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ventas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ventas"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BUSCAR POR CODIGO",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/sales/P00001"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL-LOCAL",
+			"value": "http://localhost:8081/clients",
+			"type": "string"
+		}
+	]
+}
