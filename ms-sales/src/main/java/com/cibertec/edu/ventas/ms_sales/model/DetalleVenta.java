@@ -80,4 +80,5 @@ public class DetalleVenta {
     public void setSubtotal(@Positive BigDecimal subtotal) {
         this.subtotal = subtotal;
     }
+
 }

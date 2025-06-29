@@ -1,7 +1,9 @@
 package com.cibertec.edu.ventas.ms_sales.service.impl;
 
 import com.cibertec.edu.ventas.ms_sales.model.DetalleVenta;
+import com.cibertec.edu.ventas.ms_sales.model.Producto;
 import com.cibertec.edu.ventas.ms_sales.model.Venta;
+import com.cibertec.edu.ventas.ms_sales.repository.ProductoRepository;
 import com.cibertec.edu.ventas.ms_sales.repository.VentaRepository;
 import com.cibertec.edu.ventas.ms_sales.service.VentaService;
 import com.cibertec.edu.ventas.ms_sales.util.ApiResponse;
@@ -16,6 +18,8 @@ public class VentaServiceImpl implements VentaService {
 
     @Autowired
     private VentaRepository ventaRepo;
+    @Autowired
+    private ProductoRepository productoRepo;
 
     @Override
     public ApiResponse<Venta> registrar(Venta venta) {
@@ -32,9 +36,23 @@ public class VentaServiceImpl implements VentaService {
         BigDecimal total = BigDecimal.ZERO;
 
         for (DetalleVenta detalle : venta.getDetalles()) {
+            // Buscar producto
+            Producto producto = productoRepo.findById(detalle.getProductoId())
+                    .orElseThrow(() -> new RuntimeException("Producto con ID " + detalle.getProductoId() + " no encontrado"));
+
+            // Validar stock
+            if (producto.getStock() < detalle.getCantidad()) {
+                return new ApiResponse<>("error", null,
+                        "Stock insuficiente para el producto: " + producto.getNombre());
+            }
+
+            // Descontar stock y guardar
+            producto.setStock(producto.getStock() - detalle.getCantidad());
+            productoRepo.save(producto);
+
+            // Relacionar venta y calcular subtotal
             detalle.setVenta(venta);
-            BigDecimal subtotal = detalle.getPrecioUnitario()
-                    .multiply(BigDecimal.valueOf(detalle.getCantidad()));
+            BigDecimal subtotal = detalle.getPrecioUnitario().multiply(BigDecimal.valueOf(detalle.getCantidad()));
             detalle.setSubtotal(subtotal);
             total = total.add(subtotal);
         }

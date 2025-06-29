@@ -33,6 +33,10 @@ public class Venta {
     @JsonManagedReference
     private List<DetalleVenta> detalles = new ArrayList<>();
 
+    @Column(name = "usuario_id", nullable = false)
+    private Long usuarioId;
+
+
     public Long getId() {
         return id;
     }
@@ -71,5 +75,13 @@ public class Venta {
 
     public void setDetalles(List<DetalleVenta> detalles) {
         this.detalles = detalles;
+    }
+
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
     }
 }
