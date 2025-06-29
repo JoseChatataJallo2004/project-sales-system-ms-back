@@ -9,5 +9,5 @@ public interface VentaService {
     ApiResponse<Venta> buscarPorCodigo(String codigo);
     ApiResponse<List<Venta>> listarTodas();
     ApiResponse<String> eliminarPorCodigo(String codigo);
-    ApiResponse<Venta> actualizar(String codigo, Venta cambios);
+    //ApiResponse<Venta> actualizar(String codigo, Venta cambios);
 }

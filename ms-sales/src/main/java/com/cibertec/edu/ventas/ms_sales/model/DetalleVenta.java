@@ -21,18 +21,17 @@ public class DetalleVenta {
     @JsonBackReference
     private Venta venta;
 
-    @NotNull
-    private Long productoId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "producto_id", nullable = false)
+    private Producto producto;
 
     @Positive
     private Integer cantidad;
 
     @Positive
-    private BigDecimal precioUnitario;
-
-    @Positive
     private BigDecimal subtotal;
 
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -49,36 +48,27 @@ public class DetalleVenta {
         this.venta = venta;
     }
 
-    public @NotNull Long getProductoId() {
-        return productoId;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setProductoId(@NotNull Long productoId) {
-        this.productoId = productoId;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
-    public @Positive Integer getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(@Positive Integer cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 
-    public @Positive BigDecimal getPrecioUnitario() {
-        return precioUnitario;
-    }
-
-    public void setPrecioUnitario(@Positive BigDecimal precioUnitario) {
-        this.precioUnitario = precioUnitario;
-    }
-
-    public @Positive BigDecimal getSubtotal() {
+    public BigDecimal getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(@Positive BigDecimal subtotal) {
+    public void setSubtotal(BigDecimal subtotal) {
         this.subtotal = subtotal;
     }
-
 }

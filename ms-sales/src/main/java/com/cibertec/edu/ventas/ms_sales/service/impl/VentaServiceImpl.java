@@ -36,26 +36,27 @@ public class VentaServiceImpl implements VentaService {
         BigDecimal total = BigDecimal.ZERO;
 
         for (DetalleVenta detalle : venta.getDetalles()) {
-            // Buscar producto
-            Producto producto = productoRepo.findById(detalle.getProductoId())
-                    .orElseThrow(() -> new RuntimeException("Producto con ID " + detalle.getProductoId() + " no encontrado"));
+            Producto producto = productoRepo.findById(detalle.getProducto().getId())
+                    .orElseThrow(() -> new RuntimeException("Producto con ID " + detalle.getProducto().getId() + " no encontrado"));
 
-            // Validar stock
             if (producto.getStock() < detalle.getCantidad()) {
                 return new ApiResponse<>("error", null,
                         "Stock insuficiente para el producto: " + producto.getNombre());
             }
 
-            // Descontar stock y guardar
             producto.setStock(producto.getStock() - detalle.getCantidad());
             productoRepo.save(producto);
 
-            // Relacionar venta y calcular subtotal
+            // 🔧 Corrección aquí:
+            detalle.setProducto(producto);
             detalle.setVenta(venta);
-            BigDecimal subtotal = detalle.getPrecioUnitario().multiply(BigDecimal.valueOf(detalle.getCantidad()));
+
+            BigDecimal subtotal = BigDecimal.valueOf(producto.getPrecio())
+                    .multiply(BigDecimal.valueOf(detalle.getCantidad()));
             detalle.setSubtotal(subtotal);
             total = total.add(subtotal);
         }
+
 
         venta.setMontoTotal(total);
 
@@ -87,7 +88,7 @@ public class VentaServiceImpl implements VentaService {
         ventaRepo.delete(venta.get());
         return new ApiResponse<>("success", codigo, "Venta eliminada correctamente.");
     }
-    @Override
+    /*@Override
     public ApiResponse<Venta> actualizar(String codigo, Venta cambios) {
         Optional<Venta> optVenta = ventaRepo.findByCodigo(codigo);
         if (optVenta.isEmpty()) {
@@ -108,7 +109,7 @@ public class VentaServiceImpl implements VentaService {
 
             for (DetalleVenta det : cambios.getDetalles()) {
                 det.setVenta(venta);                           // back-ref
-                BigDecimal sub = det.getPrecioUnitario()
+                BigDecimal sub = det.getProducto().getPrecio()
                         .multiply(BigDecimal.valueOf(det.getCantidad()));
                 det.setSubtotal(sub);
                 nuevoTotal = nuevoTotal.add(sub);
@@ -121,5 +122,5 @@ public class VentaServiceImpl implements VentaService {
 
         Venta guardado = ventaRepo.save(venta);
         return new ApiResponse<>("success", guardado, "Venta actualizada.");
-    }
+    }*/
 }

@@ -33,8 +33,9 @@ public class Venta {
     @JsonManagedReference
     private List<DetalleVenta> detalles = new ArrayList<>();
 
-    @Column(name = "usuario_id", nullable = false)
-    private Long usuarioId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Cliente cliente;
 
 
     public Long getId() {
@@ -77,11 +78,11 @@ public class Venta {
         this.detalles = detalles;
     }
 
-    public Long getUsuarioId() {
-        return usuarioId;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setUsuarioId(Long usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

@@ -30,9 +30,9 @@ public class VentaController {
     public ApiResponse<String> eliminar(@PathVariable String codigo) {
         return ventaService.eliminarPorCodigo(codigo);
     }
-    @PutMapping("/{codigo}")
+    /*@PutMapping("/{codigo}")
     public ApiResponse<Venta> actualizar(@PathVariable String codigo,
                                          @RequestBody Venta cambios) {
         return ventaService.actualizar(codigo, cambios);
-    }
+    }*/
 }
