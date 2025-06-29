@@ -332,6 +332,42 @@
 						"url": "http://localhost:8080/ventas"
 					},
 					"response": []
+				},
+				{
+					"name": "NO-VISTAS",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/sales/no-vistas/count"
+					},
+					"response": []
+				},
+				{
+					"name": "LISTA-NOTIFACIONES",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/sales/notificaciones/ventas"
+					},
+					"response": []
+				},
+				{
+					"name": "VER-NOTIFICACIONES",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": "http://localhost:8080/sales/notificaciones/2/vista"
+					},
+					"response": []
 				}
 			]
 		}
