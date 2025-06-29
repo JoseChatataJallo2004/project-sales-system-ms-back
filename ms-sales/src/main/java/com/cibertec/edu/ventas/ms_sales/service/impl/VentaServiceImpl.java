@@ -71,10 +71,12 @@ public class VentaServiceImpl implements VentaService {
         }
         return new ApiResponse<>("success", venta.get(), "Venta encontrada.");
     }
+
     @Override
-    public List<Venta> listarTodas() {
-        return ventaRepo.findAll();  // No usamos ApiResponse para listas simples
+    public ApiResponse<List<Venta>> listarTodas() {
+        return new ApiResponse<>("success", ventaRepo.findAll(), "Listado de ventas registradas correctamente.");
     }
+
 
     @Override
     public ApiResponse<String> eliminarPorCodigo(String codigo) {

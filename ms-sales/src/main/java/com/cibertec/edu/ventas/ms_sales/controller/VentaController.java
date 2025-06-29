@@ -23,7 +23,7 @@ public class VentaController {
         return ventaService.buscarPorCodigo(codigo);
     }
     @GetMapping
-    public List<Venta> listarTodas() {
+    public ApiResponse<List<Venta>> listarTodas() {
         return ventaService.listarTodas();
     }
     @DeleteMapping("/{codigo}")

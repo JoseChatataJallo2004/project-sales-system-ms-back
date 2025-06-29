@@ -7,7 +7,7 @@ import java.util.List;
 public interface VentaService {
     ApiResponse<Venta> registrar(Venta venta);
     ApiResponse<Venta> buscarPorCodigo(String codigo);
-    List<Venta> listarTodas();
+    ApiResponse<List<Venta>> listarTodas();
     ApiResponse<String> eliminarPorCodigo(String codigo);
     ApiResponse<Venta> actualizar(String codigo, Venta cambios);
 }
